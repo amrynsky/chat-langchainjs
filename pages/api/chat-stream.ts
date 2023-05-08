@@ -1,11 +1,10 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import type { Server as HttpServer } from "http";
 import type { Server as HttpsServer } from "https";
 import { WebSocketServer } from 'ws';
-import { HNSWLib } from "langchain/vectorstores";
-import { OpenAIEmbeddings } from 'langchain/embeddings';
-import { makeChain } from "./util";
+import { HNSWLib } from "langchain/vectorstores/hnswlib";
+import { OpenAIEmbeddings } from 'langchain/embeddings/openai';
+import { makeChain } from "./chain";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if ((res.socket as any).server.wss) {

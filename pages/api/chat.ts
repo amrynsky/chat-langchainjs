@@ -1,9 +1,8 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import path from "path";
-import { HNSWLib } from "langchain/vectorstores";
-import { OpenAIEmbeddings } from "langchain/embeddings";
-import { makeChain } from "./util";
+import { HNSWLib } from "langchain/vectorstores/hnswlib";
+import { OpenAIEmbeddings } from "langchain/embeddings/openai";
+import { makeChain } from "./chain";
 
 export default async function handler(
   req: NextApiRequest,

@@ -1,9 +1,9 @@
-import { HNSWLib } from "langchain/vectorstores";
-import { OpenAIEmbeddings } from "langchain/embeddings";
+import { HNSWLib } from "langchain/vectorstores/hnswlib";
+import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import * as fs from "fs";
 import { Document } from "langchain/document";
-import { BaseDocumentLoader } from "langchain/document_loaders";
+import { TextLoader } from "langchain/document_loaders/fs/text";
 import path from "path";
 import { load } from "cheerio";
 
@@ -49,16 +49,16 @@ async function processDirectory(directoryPath: string): Promise<Document[]> {
   return docs;
 }
 
-class ReadTheDocsLoader extends BaseDocumentLoader {
+class ReadTheDocsLoader extends TextLoader {
   constructor(public filePath: string) {
-    super();
+    super(filePath);
   }
   async load(): Promise<Document[]> {
     return await processDirectory(this.filePath);
   }
 }
 
-const directoryPath = "langchain.readthedocs.io";
+const directoryPath = ".docs";
 const loader = new ReadTheDocsLoader(directoryPath);
 
 export const run = async () => {

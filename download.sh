@@ -3,4 +3,4 @@
 # Error if any command fails
 set -e
 echo Downloading docs...
-wget -q -r -A.html https://langchain.readthedocs.io/en/latest/
+wget -r -A.html https://langchain.readthedocs.io/en/latest/ -P .docs
